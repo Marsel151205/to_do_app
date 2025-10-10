@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/widgets/primary_button.dart';
+import 'package:to_do_app/features/auth/registration/data/auth_repository.dart';
+import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
+import 'package:to_do_app/features/auth/registration/presentation/bloc/register_event.dart';
 
 import '../../../../../core/themes/colors.dart';
 import '../../../../../core/themes/dimens.dart';
+import '../bloc/register_state.dart';
 import '../widgets/register_fields.dart';
 import '../widgets/register_header.dart';
 
@@ -11,6 +16,19 @@ class RegistrationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => RegisterBloc(AuthRepository()),
+      child: const _RegistrationView(),
+    );
+  }
+}
+
+class _RegistrationView extends StatelessWidget {
+  const _RegistrationView();
+
+  @override
+  Widget build(BuildContext context) {
+    final bloc = context.read<RegisterBloc>();
     final topMargin = MediaQuery.of(context).padding.top;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -18,19 +36,35 @@ class RegistrationPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SafeArea(
           top: true,
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: padding24,
-            ).copyWith(top: (topMargin + padding24)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                RegisterHeader(),
-                RegisterFields(),
-                SizedBox(height: height40),
-                PrimaryButton(onTap: () {}, labelText: 'Register'),
-              ],
-            ),
+          child: BlocConsumer<RegisterBloc, RegisterState>(
+            listener: (context, state) {
+              if (state.errorMessage != null) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text(state.errorMessage.toString())),
+                );
+              }
+            },
+            builder: (context, state) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: padding24,
+                ).copyWith(top: (topMargin + padding24)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RegisterHeader(),
+                    RegisterFields(),
+                    SizedBox(height: height40),
+                    PrimaryButton(
+                      onTap: () {
+                        bloc.add(RegisterSubmitted());
+                      },
+                      labelText: state.isLoading ? 'Loading' : 'Register',
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ),
       ),

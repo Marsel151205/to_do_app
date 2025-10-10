@@ -31,18 +31,15 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
           state.name,
           state.email,
           state.password,
+          state.confirmPassword,
         );
 
-        if (response) {
-          emit(state.copyWith(isLoading: false));
-        } else {
-          emit(
-            state.copyWith(
-              isLoading: false,
-              errorMessage: 'Invalidate Credentials',
-            ),
-          );
-        }
+        emit(
+          state.copyWith(
+            isLoading: false,
+            errorMessage: response,
+          ),
+        );
       } catch (e) {
         emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
       }
