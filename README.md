@@ -33,7 +33,7 @@ The project follows a **Clean Architecture** approach with separation of concern
 
 | Layer | Technologies |
 |-------|--------------|
-| **Mobile (Flutter)** | Flutter 3.x, Dart, Dio, get_it, go_router, FutureBuilder |
+| **Mobile (Flutter)** | Flutter, Dart, Dio, get_it, go_router, FutureBuilder |
 | **Architecture** | Clean Architecture |
 | **State Management** | Flutter Bloc |
 | **Design** | [Figma Prototype](https://www.figma.com/design/ErGGmOpO5XtbAEdzaq4QoD/Mobile-Apps-%E2%80%93-Prototyping-Kit--Community-?node-id=101-306&p=f&t=T6TQcWBRKWipS6Ym-0) |
