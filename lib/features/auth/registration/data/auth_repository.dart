@@ -1,22 +1,17 @@
+import 'package:to_do_app/features/auth/registration/data/auth_service.dart';
+import 'package:to_do_app/features/auth/registration/domain/models/registration_response.dart';
+
 class AuthRepository {
-  Future<String> registration(
+  final AuthService authService;
+  AuthRepository(this.authService);
+
+  Future<RegistrationResponse> registration(
     String username,
     String email,
     String password,
     String confirmPassword,
   ) async {
-    await Future.delayed(const Duration(seconds: 2));
-    String answer = '';
-    if (username.isEmpty) {
-      answer = 'Имя пользователя некорректно';
-    } else if (email.isEmpty) {
-      answer = "Почта не валидна";
-    } else if (password.length < 8) {
-      answer = 'Длина пароль должна быть больше или равна 8';
-    } else if (password != confirmPassword) {
-      answer = 'Подтвердите пароль';
-    }
 
-    return answer;
+    return authService.registration(username, email, password);
   }
 }

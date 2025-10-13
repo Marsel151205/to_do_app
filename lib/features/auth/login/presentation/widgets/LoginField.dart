@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../core/themes/dimens.dart';
-import '../../../../../core/widgets/text_field_widget.dart';
+import '../../../../../shared/themes/dimens.dart';
+import '../../../../../shared/widgets/text_field_widget.dart';
 
 class LoginField extends StatelessWidget {
   const LoginField({super.key});

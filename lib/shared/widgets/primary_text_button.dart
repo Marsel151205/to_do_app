@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/themes/text_styles.dart';
+import 'package:to_do_app/shared/themes/text_styles.dart';
 
 class PrimaryTextButton extends StatelessWidget {
   final Function() onTap;

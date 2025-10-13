@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/themes/images.dart';
+import 'package:to_do_app/shared/themes/images.dart';
 
-import '../../../../../core/themes/colors.dart';
-import '../../../../../core/themes/dimens.dart';
+import '../../../../../shared/themes/colors.dart';
+import '../../../../../shared/themes/dimens.dart';
 import '../widgets/LoginAction.dart';
 import '../widgets/LoginField.dart';
 import '../widgets/login_header.dart';

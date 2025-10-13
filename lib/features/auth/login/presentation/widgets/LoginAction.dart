@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../../../core/themes/dimens.dart';
-import '../../../../../core/themes/text_styles.dart';
-import '../../../../../core/widgets/primary_button.dart';
-import '../../../../../core/widgets/primary_text_button.dart';
-import '../../../../../core/widgets/rich_text_button.dart';
+import '../../../../../shared/themes/dimens.dart';
+import '../../../../../shared/themes/text_styles.dart';
+import '../../../../../shared/widgets/primary_button.dart';
+import '../../../../../shared/widgets/primary_text_button.dart';
+import '../../../../../shared/widgets/rich_text_button.dart';
 
 
 class LoginAction extends StatelessWidget {

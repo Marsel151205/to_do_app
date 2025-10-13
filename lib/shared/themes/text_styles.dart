@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/themes/colors.dart';
-import 'package:to_do_app/core/themes/dimens.dart';
+import 'package:to_do_app/shared/themes/colors.dart';
+import 'package:to_do_app/shared/themes/dimens.dart';
 
 
 final TextStyle body1TextStyle = TextStyle(

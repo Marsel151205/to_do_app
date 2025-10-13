@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/core/widgets/primary_button.dart';
-import 'package:to_do_app/features/auth/registration/data/auth_repository.dart';
+import 'package:to_do_app/core/di/injection_container.dart';
+import 'package:to_do_app/shared/widgets/primary_button.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_event.dart';
 
-import '../../../../../core/themes/colors.dart';
-import '../../../../../core/themes/dimens.dart';
+import '../../../../../shared/themes/colors.dart';
+import '../../../../../shared/themes/dimens.dart';
 import '../bloc/register_state.dart';
 import '../widgets/register_fields.dart';
 import '../widgets/register_header.dart';
@@ -17,7 +17,7 @@ class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => RegisterBloc(AuthRepository()),
+      create: (_) => getIt<RegisterBloc>(),
       child: const _RegistrationView(),
     );
   }

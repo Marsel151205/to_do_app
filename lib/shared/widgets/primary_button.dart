@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/themes/colors.dart';
-import 'package:to_do_app/core/themes/dimens.dart';
-import 'package:to_do_app/core/themes/text_styles.dart';
+import 'package:to_do_app/shared/themes/colors.dart';
+import 'package:to_do_app/shared/themes/dimens.dart';
+import 'package:to_do_app/shared/themes/text_styles.dart';
 
 class PrimaryButton extends StatelessWidget {
   final Function() onTap;

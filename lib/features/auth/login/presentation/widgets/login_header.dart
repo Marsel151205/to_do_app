@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-import '../../../../../core/themes/dimens.dart';
-import '../../../../../core/themes/text_styles.dart';
+import '../../../../../shared/themes/dimens.dart';
+import '../../../../../shared/themes/text_styles.dart';
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({super.key});

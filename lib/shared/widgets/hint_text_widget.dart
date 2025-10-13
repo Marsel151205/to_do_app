@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:to_do_app/core/themes/text_styles.dart';
+import 'package:to_do_app/shared/themes/text_styles.dart';
 
 class HintTextWidget extends StatelessWidget {
   final String text;

@@ -37,7 +37,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         emit(
           state.copyWith(
             isLoading: false,
-            errorMessage: response,
+            errorMessage: response.accessToken,
           ),
         );
       } catch (e) {
@@ -45,4 +45,5 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       }
     });
   }
+
 }

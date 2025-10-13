@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_event.dart';
 
-import '../../../../../core/themes/dimens.dart';
-import '../../../../../core/widgets/hint_text_widget.dart';
-import '../../../../../core/widgets/text_field_widget.dart';
+import '../../../../../shared/themes/dimens.dart';
+import '../../../../../shared/widgets/hint_text_widget.dart';
+import '../../../../../shared/widgets/text_field_widget.dart';
 
 class RegisterFields extends StatelessWidget {
   const RegisterFields({super.key});
