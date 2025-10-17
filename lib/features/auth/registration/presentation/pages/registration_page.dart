@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:to_do_app/core/di/injection_container.dart';
 import 'package:to_do_app/shared/widgets/primary_button.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
@@ -45,24 +46,40 @@ class _RegistrationView extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding24,
-                ).copyWith(top: (topMargin + padding24)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    RegisterHeader(),
-                    RegisterFields(),
-                    SizedBox(height: height40),
-                    PrimaryButton(
-                      onTap: () {
-                        bloc.add(RegisterSubmitted());
-                      },
-                      labelText: state.isLoading ? 'Loading' : 'Register',
+              return Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: padding24,
+                    ).copyWith(top: (topMargin + padding24)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        RegisterHeader(),
+                        RegisterFields(),
+                        SizedBox(height: height40),
+                        PrimaryButton(
+                          onTap: () {
+                            bloc.add(RegisterSubmitted());
+                          },
+                          labelText: state.isLoading ? 'Loading' : 'Register',
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  if(state.isLoading) 
+                    Container(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      color: black.withOpacity(0.4),
+                      child: const Center(
+                        child: SpinKitFadingCircle(
+                          color: Colors.deepPurple,
+                          size: 60.0,
+                        ),
+                      ),
+                    )
+                ],
               );
             },
           ),

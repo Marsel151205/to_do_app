@@ -27,7 +27,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<RegisterSubmitted>((event, emit) async {
       emit(state.copyWith(isLoading: true, errorMessage: null));
       try {
-        final response = await authRepository.registration(
+        await authRepository.registration(
           state.name,
           state.email,
           state.password,
@@ -37,11 +37,13 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         emit(
           state.copyWith(
             isLoading: false,
-            errorMessage: response.accessToken,
+            errorMessage: 'Вы успешно зарегистрировались',
           ),
         );
+
+        
       } catch (e) {
-        emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
+        emit(state.copyWith(isLoading: false, errorMessage: 'Данный пользователь уже существует'));
       }
     });
   }

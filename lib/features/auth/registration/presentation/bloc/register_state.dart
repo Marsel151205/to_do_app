@@ -1,3 +1,5 @@
+enum RegisterStatus { initial, loading, success, failure }
+
 class RegisterState {
   final String name;
   final String email;
@@ -21,8 +23,9 @@ class RegisterState {
     String? password,
     String? confirmPassword,
     bool? isLoading,
-    String? errorMessage
-}) {
+    String? errorMessage,
+    RegisterStatus? status,
+  }) {
     return RegisterState(
       name: name ?? this.name,
       email: email ?? this.email,
@@ -33,3 +36,5 @@ class RegisterState {
     );
   }
 }
+
+

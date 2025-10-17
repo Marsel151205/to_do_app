@@ -5,6 +5,7 @@ import 'package:to_do_app/core/di/injection_container.dart';
 import '../shared/themes/colors.dart';
 
 void main() {
+  setupInjection();
   runApp(const TodoApp());
 }
 
@@ -13,7 +14,6 @@ class TodoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    setupInjection();
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData(
