@@ -1,42 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/shared/themes/images.dart';
-
-import '../../../../../shared/themes/colors.dart';
-import '../../../../../shared/themes/dimens.dart';
-import '../widgets/LoginAction.dart';
-import '../widgets/LoginField.dart';
-import '../widgets/login_header.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/core/di/injection_container.dart';
+import 'package:to_do_app/features/auth/login/presentation/bloc/login_bloc.dart';
+import 'package:to_do_app/features/auth/login/presentation/pages/login_view.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: height200, width:double.infinity, child: logo),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: padding24,
-                ).copyWith(top: padding24),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    LoginHeader(),
-                    LoginField(),
-                    LoginAction()
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
+    return BlocProvider(
+      create: (_) => getIt<LoginBloc>(), 
+      child: const LoginView()
+      );
   }
 }

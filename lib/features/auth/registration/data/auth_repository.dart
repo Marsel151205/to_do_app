@@ -4,18 +4,8 @@ import 'package:to_do_app/features/auth/registration/domain/models/registration_
 class AuthRepository {
   final ApiServices api;
   AuthRepository(this.api);
-
-  Future<RegistrationResponse> registration(
-    String username,
-    String email,
-    String password
-  ) async {
-
-    return registrationService(username, email, password);
-  }
-
   
-  Future<RegistrationResponse> registrationService(
+  Future<RegistrationResponse> registration(
     String username,
     String email,
     String password,

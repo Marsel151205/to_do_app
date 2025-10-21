@@ -9,7 +9,11 @@ import '../../../../../shared/widgets/rich_text_button.dart';
 
 
 class LoginAction extends StatelessWidget {
-  const LoginAction({super.key});
+  final void Function() onTap;
+  const LoginAction({
+    super.key,
+    required this.onTap
+    });
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,7 @@ class LoginAction extends StatelessWidget {
           labelText: 'Forgot Password?',
         ),
         SizedBox(height: height24),
-        PrimaryButton(onTap: () {}, labelText: 'Login'),
+        PrimaryButton(onTap: onTap, labelText: 'Login'),
         SizedBox(height: height16),
         Center(
           child: RichTextButton(

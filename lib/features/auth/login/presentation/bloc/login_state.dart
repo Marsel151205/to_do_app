@@ -1,10 +1,29 @@
 
-abstract class LoginState {}
+import 'package:to_do_app/features/auth/login/domain/models/login_response.dart';
 
-class InputState extends LoginState {}
+abstract class LoginState {
+  const LoginState();
+}
 
-class SuccessState extends LoginState {}
+class Input extends LoginState {
+  final String username;
+  final String password;
 
-class ErrorState extends LoginState {}
+  const Input(this.username, this.password);
+}
 
-class LoadingState extends LoginState {}
+class Success extends LoginState {
+  final LoginResponse response;
+
+  Success(this.response);
+}
+
+class ErrorState extends LoginState {
+  final String? errorMessage;
+
+  ErrorState(this.errorMessage);
+}
+
+class Loading extends LoginState {
+  const Loading();
+}

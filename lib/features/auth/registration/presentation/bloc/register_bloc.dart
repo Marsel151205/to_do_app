@@ -11,10 +11,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
 
   final AuthRepository authRepository;
 
-  registerSubmitted(RegisterSubmitted event, Emitter<RegisterState> emit) {
-    emit(state);
-  }
-
   Future<void> _onRegisterSubmitted(
     RegisterSubmitted event,
     Emitter<RegisterState> emit,
