@@ -1,18 +1,26 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
-import 'package:to_do_app/features/auth/registration/presentation/bloc/register_event.dart';
+
+import 'package:flutter/material.dart';
 
 import '../../../../../shared/themes/dimens.dart';
 import '../../../../../shared/widgets/hint_text_widget.dart';
 import '../../../../../shared/widgets/text_field_widget.dart';
 
 class RegisterFields extends StatelessWidget {
-  const RegisterFields({super.key});
+  final TextEditingController? nameController;
+  final TextEditingController? emailController;
+  final TextEditingController? passwordController;
+  final TextEditingController? confirmPasswordController;
+
+  const RegisterFields({
+    super.key,
+    this.nameController,
+    this.emailController,
+    this.passwordController,
+    this.confirmPasswordController
+    });
 
   @override
   Widget build(BuildContext context) {
-    final bloc = context.read<RegisterBloc>();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -22,7 +30,7 @@ class RegisterFields extends StatelessWidget {
         TextFieldWidget(
           labelText: 'Lucas',
           inputType: TextInputType.name,
-          onTyped: (value) => bloc.add(NameChanged(value)),
+          controller: nameController,
         ),
         SizedBox(height: height16),
         HintTextWidget(text: 'Email Address'),
@@ -30,7 +38,7 @@ class RegisterFields extends StatelessWidget {
         TextFieldWidget(
           labelText: 'example@email.com',
           inputType: TextInputType.emailAddress,
-          onTyped: (value) => bloc.add(EmailChanged(value)),
+          controller: emailController,
         ),
         SizedBox(height: height16),
         HintTextWidget(text: 'Password'),
@@ -38,13 +46,13 @@ class RegisterFields extends StatelessWidget {
         TextFieldWidget(
           labelText: 'Create a Password',
           inputType: TextInputType.visiblePassword,
-          onTyped: (value) => bloc.add(PasswordChanged(value)),
+          controller: passwordController,
         ),
         SizedBox(height: height16),
         TextFieldWidget(
           labelText: 'Confirm Password',
           inputType: TextInputType.visiblePassword,
-          onTyped: (value) => bloc.add(ConfirmPasswordChanged(value)),
+          controller: confirmPasswordController,
         ),
       ],
     );

@@ -1,40 +1,30 @@
-enum RegisterStatus { initial, loading, success, failure }
+import 'package:to_do_app/features/auth/registration/domain/models/registration_response.dart';
 
-class RegisterState {
+abstract class RegisterState {
+  const RegisterState();
+}
+
+class Action extends RegisterState {
   final String name;
   final String email;
   final String password;
-  final String confirmPassword;
-  final bool isLoading;
-  final String? errorMessage;
-
-  const RegisterState({
-    this.name = '',
-    this.email = '',
-    this.password = '',
-    this.confirmPassword = '',
-    this.isLoading = false,
-    this.errorMessage,
-  });
-
-  RegisterState copyWith({
-    String? name,
-    String? email,
-    String? password,
-    String? confirmPassword,
-    bool? isLoading,
-    String? errorMessage,
-    RegisterStatus? status,
-  }) {
-    return RegisterState(
-      name: name ?? this.name,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      confirmPassword: confirmPassword ?? this.confirmPassword,
-      isLoading: isLoading ?? this.isLoading,
-      errorMessage: errorMessage
-    );
-  }
+  
+  const Action(this.name, this.email, this.password);
 }
 
+class Success extends RegisterState {
+  final RegistrationResponse response;
 
+  const Success(this.response);
+}
+
+class Error extends RegisterState {
+  final String errorMessage;
+
+  const Error(this.errorMessage);
+}
+
+class Loading extends RegisterState {
+  const Loading();
+
+}

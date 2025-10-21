@@ -1,10 +1,26 @@
 import 'package:dio/dio.dart';
+import 'package:to_do_app/core/network/interceptors/error_interceptor.dart';
 
 class ApiServices {
-  final Dio dio;
-  ApiServices(this.dio);
 
-  Future<Response> get(String path, {Map<String, dynamic>? query}) async => dio.get(path, queryParameters: query);
+  Dio implDio() {
+   final dio = Dio(
+      BaseOptions(
+        baseUrl: 'https://boxy-jxyk.onrender.com/',
+        connectTimeout: const Duration(seconds: 60),
+        sendTimeout: const Duration(seconds: 60),
+        receiveTimeout: const Duration(seconds: 60),
+        headers: {'Content-Type': 'application/json'}
+      )
+    );
 
-  Future<Response> post(String path, {dynamic, data}) async => dio.post(path, data: data);
+    dio.interceptors.add(ErrorInterceptor());
+
+    return dio;
+  }
+  
+
+  Future<Response> get(String path, {Map<String, dynamic>? query}) async => implDio().get(path, queryParameters: query);
+
+  Future<Response> post(String path, {dynamic, data}) async => implDio().post(path, data: data);
 }

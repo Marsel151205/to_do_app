@@ -5,47 +5,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../data/auth_repository.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
-  final AuthRepository authRepository;
-
-  RegisterBloc(this.authRepository) : super(const RegisterState()) {
-    on<NameChanged>((event, emit) {
-      emit(state.copyWith(name: event.name));
-    });
-
-    on<EmailChanged>((event, emit) {
-      emit(state.copyWith(email: event.email));
-    });
-
-    on<PasswordChanged>((event, emit) {
-      emit(state.copyWith(password: event.password));
-    });
-
-    on<ConfirmPasswordChanged>((event, emit) {
-      emit(state.copyWith(confirmPassword: event.confirmPassword));
-    });
-
-    on<RegisterSubmitted>((event, emit) async {
-      emit(state.copyWith(isLoading: true, errorMessage: null));
-      try {
-        await authRepository.registration(
-          state.name,
-          state.email,
-          state.password,
-          state.confirmPassword,
-        );
-
-        emit(
-          state.copyWith(
-            isLoading: false,
-            errorMessage: 'Вы успешно зарегистрировались',
-          ),
-        );
-
-        
-      } catch (e) {
-        emit(state.copyWith(isLoading: false, errorMessage: 'Данный пользователь уже существует'));
-      }
-    });
+  RegisterBloc(this.authRepository) : super(const Action('', '', '')) {
+    on<RegisterSubmitted>(_onRegisterSubmitted);
   }
 
+  final AuthRepository authRepository;
+
+  registerSubmitted(RegisterSubmitted event, Emitter<RegisterState> emit) {
+    emit(state);
+  }
+
+  Future<void> _onRegisterSubmitted(
+    RegisterSubmitted event,
+    Emitter<RegisterState> emit,
+  ) async {
+    emit(const Loading());
+
+    try {
+      final response = await authRepository.registration(
+        event.name,
+        event.email,
+        event.password,
+      );
+      emit(Success(response));
+    } catch (exception) {
+      emit(Error(exception.toString()));
+    }
+  }
 }
