@@ -5,6 +5,8 @@ import 'package:to_do_app/features/auth/login/presentation/bloc/login_bloc.dart'
 import 'package:to_do_app/features/auth/registration/data/auth_repository.dart';
 import 'package:to_do_app/features/auth/registration/presentation/bloc/register_bloc.dart';
 
+import '../local/storage/secury_storage.dart';
+
 final getIt = GetIt.instance;
 
 void setupInjection() {
@@ -12,13 +14,16 @@ void setupInjection() {
 
   // Registration
   getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepository(getIt<ApiServices>()),
+    () => AuthRepository(getIt<ApiServices>(), getIt<SecuryStorageService>()),
   );
   getIt.registerFactory(() => RegisterBloc(getIt<AuthRepository>()));
 
   // Login
   getIt.registerLazySingleton<LoginRepository>(
-    () => LoginRepository(getIt<ApiServices>()),
+    () => LoginRepository(getIt<ApiServices>(), getIt<SecuryStorageService>()),
   );
   getIt.registerFactory(() => LoginBloc(getIt<LoginRepository>()));
+
+  // Secury Storage
+  getIt.registerLazySingleton(() => SecuryStorageService());
 }

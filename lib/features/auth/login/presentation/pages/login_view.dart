@@ -49,12 +49,11 @@ class _LoginPageState extends State<LoginView> {
               return Stack(
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(
-                        height: height200,
-                        width: double.infinity,
-                        child: logo,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(radius12),
+                        child: logo
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(
@@ -88,7 +87,7 @@ class _LoginPageState extends State<LoginView> {
                       height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
                       color: black.withOpacity(0.4),
-                      child: SpinKitCircle(color: Colors.deepPurple, size: 60),
+                      child: SpinKitRing(color: colorPrimary, size: 60),
                     ),
                 ],
               );

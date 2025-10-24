@@ -14,6 +14,9 @@ final router = GoRouter(
         GoRoute(
           path: '/registration',
           builder: (context, state) => RegistrationPage(),
+          routes: [
+            GoRoute(path: '/main', builder: (context, state) => MainPage()),
+          ]
         ),
         GoRoute(path: '/main', builder: (context, state) => MainPage()),
       ],

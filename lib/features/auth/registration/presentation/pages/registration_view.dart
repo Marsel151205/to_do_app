@@ -88,7 +88,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                       width: MediaQuery.of(context).size.width,
                       color: black.withOpacity(0.4),
                       child: const Center(
-                        child: SpinKitFadingCircle(
+                        child: SpinKitRing(
                           color: Colors.deepPurple,
                           size: 60.0,
                         ),

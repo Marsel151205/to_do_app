@@ -1,9 +1,11 @@
+import 'package:to_do_app/core/local/storage/secury_storage.dart';
 import 'package:to_do_app/core/network/api_services.dart';
 import 'package:to_do_app/features/auth/registration/domain/models/registration_response.dart';
 
 class AuthRepository {
   final ApiServices api;
-  AuthRepository(this.api);
+  final SecuryStorageService _storage;
+  AuthRepository(this.api, this._storage);
   
   Future<RegistrationResponse> registration(
     String username,
@@ -16,6 +18,11 @@ class AuthRepository {
     );
 
     final data = response.data;
+
+     _storage.saveTokens(
+      accessToken: data['accessToken'],
+      refreshToken: data['refreshToken'],
+    );
 
     return RegistrationResponse(
       accessToken: data['accessToken'],

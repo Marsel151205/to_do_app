@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 // Background
-final Color backgroundColor = Color(0xFFFFFFFF);
+final Color backgroundColor = Color(0xFFF8F9FA);
 
 // TextColor
 final Color textColorPrimary = Color(0xFF000000);
