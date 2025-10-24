@@ -42,7 +42,7 @@ class _RegistrationViewState extends State<RegistrationView> {
                   SnackBar(content: Text(state.errorMessage.toString())),
                 );
               } else if (state is Success) {
-                context.go('/registration/main');
+                context.go('/main');
               }
             },
             builder: (context, state) {

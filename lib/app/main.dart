@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:to_do_app/app/app_router.dart';
 import 'package:to_do_app/core/di/injection_container.dart';
 
 import '../shared/themes/colors.dart';
 
 void main() {
+  // Сохраняем native splash до завершения инициализации
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
   setupInjection();
   runApp(const TodoApp());
 }

@@ -39,9 +39,9 @@ class _LoginPageState extends State<LoginView> {
                   SnackBar(content: Text(state.errorMessage.toString())),
                 );
               } else if (state is Success) {
-                context.go('/login/main');
+                context.go('/main');
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Вы успешно прошли авторизацию!')),
+                  const SnackBar(content: Text('Вы успешно прошли авторизацию!')),
                 );
               }
             },
