@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:to_do_app/core/di/injection_container.dart';
-import 'package:to_do_app/core/local/storage/secury_storage.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../shared/themes/dimens.dart';
+import '../../../shared/themes/images.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,8 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  final SecuryStorageService _storage = getIt<SecuryStorageService>();
-
   @override
   void initState() {
     super.initState();
@@ -21,31 +20,28 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> _checkAuthAndNavigate() async {
-    // Удаляем native splash screen после инициализации
     FlutterNativeSplash.remove();
 
-    // Небольшая задержка для плавности
-    await Future.delayed(const Duration(milliseconds: 500));
-
-    // Проверяем наличие токенов
-    final hasTokens = await _storage.hasTokens();
+    await Future.delayed(const Duration(milliseconds: 1000));
 
     if (!mounted) return;
-
-    // Навигация в зависимости от наличия токенов
-    if (hasTokens) {
-      context.go('/main');
-    } else {
-      context.go('/login');
-    }
+    context.go('/main');
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: Column(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(radius12),
+              child: logo,
+            ),
+            const CircularProgressIndicator(),
+          ],
+        ),
       ),
     );
   }

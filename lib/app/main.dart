@@ -5,12 +5,22 @@ import 'package:to_do_app/core/di/injection_container.dart';
 
 import '../shared/themes/colors.dart';
 
-void main() {
-  // Сохраняем native splash до завершения инициализации
+void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  final hasTokens = await securyStorage.hasTokens();
+
+  if (hasTokens) {
+    isAuth = true;
+  } else {
+    isAuth = false;
+  }
+
   setupInjection();
+
+  FlutterNativeSplash.remove();
+
   runApp(const TodoApp());
 }
 
@@ -22,7 +32,8 @@ class TodoApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: router,
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: colorPrimary))
+        colorScheme: ColorScheme.fromSeed(seedColor: colorPrimary),
+      ),
     );
   }
 }

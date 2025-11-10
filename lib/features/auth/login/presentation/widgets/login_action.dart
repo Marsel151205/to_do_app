@@ -30,7 +30,10 @@ class LoginAction extends StatelessWidget {
         SizedBox(height: height16),
         Center(
           child: RichTextButton(
-            onTap: () { context.go('/login/registration'); },
+            onTap: () { 
+              print('nextPage');
+              context.go('/registration');
+               },
             textSpans: [
               TextSpan(text: 'Not a member?', style: body1TextStyle),
               TextSpan(
